@@ -1,0 +1,11 @@
+@import "main2.scss";
+$theme-colors: (
+  "primary": #0074d9,
+  "danger": #ff4136,
+  "navbar": #333b7c,
+  "dark": #333b7c
+);
+
+$btn-border-radius: 10rem;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="ui form" method="post">
+    {% csrf_token %}
+    <h4 class="ui dividing header text-center">Filter Your Search</h4>
+    <select class="ui dropdown">
+      <option value="">Type</option>
+      <option value="1">House</option>
+      <option value="0">Aprtment</option>
+    </select>
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          <label for="{{ context.form.beds.id_for_lable }}">Number of Bedrooms</label>
+          {{ context.form.beds }}
+        </div>
+        <div class="field">
+          <label>Number of Bathroom</label>
+          <input type="text" name="shipping[last-name]" placeholder="Last Name" />
+        </div>
+      </div>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Peets allowed</label>
+    </div>
+    <div class="fields">
+      <div class=" four wide field">
+        <label for="{{ context.form.price.id_for_lable }}">Min Price</label>
+        {{ context.form.price }}
+      </div>
+      <div class=" four wide field">
+        <label>Max Price</label>
+        <input type="text" placeholder="Max price" />
+      </div>
+      <div class=" six wide field">
+        <label>Square Footage</label>
+        <input type="text" placeholder="Square Footage" />
+      </div>
+    </div>
+    <input type="submit" value="Save" class="batn btn-outline-info" />
+  </form>
+</div>

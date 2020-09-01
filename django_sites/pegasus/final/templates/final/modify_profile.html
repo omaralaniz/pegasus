@@ -1,0 +1,51 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<div>
+</div>
+<div id="form_area" style="padding-top: 2rem">
+    <div class="block">
+        <h1 class="text-center mb-5">Edit Profile</h1>
+        <a href="{% url 'view_profile' %}" style="color: black; padding-left: 6rem;">
+            <i class="arrow left icon"></i>
+            Back
+        </a>
+    </div>
+ 
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+
+    <form method="post" class="text-center text-black text-size" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center"> 
+            {% for field in context.form.visible_fields %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>
+                    {{ field.errors }}       
+                    {% if field%}             
+                    <div class="form-group form-inline">
+                        {{ field }}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck{{field.auto_id}}">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {{ field.help_text }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="{% url 'index' %}">
+            <input type="button" value="Cancel" class="btn btn-primary btn-md" style="padding-right: 1rem">
+        </a>
+            <input type="submit" value="Submit" class="btn btn-primary btn-md" style="padding-left: 1rem">
+    </form>
+
+    <script src = "../../static/final/js/modify_profile.js"></script>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% autoescape off %}
+To finalize the registration process for your '{{ user.username }}' Pegasus Account,
+please click the link below:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The Pegasus Team
+{% endautoescape %}

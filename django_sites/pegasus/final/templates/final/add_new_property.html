@@ -1,0 +1,232 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+{% if request.user.permission_level == 1%}
+<div>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../static/demo/css/main.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../../static/demo/js/add.js"></script>
+
+    <style>
+        .file-upload {
+            display: none;
+        }
+
+        .imagePreview {
+            width: 100%;
+            height: 200px;
+            background-position: center center;
+            background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+            background-color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: inline-block;
+            box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            display: block;
+            border-radius: 0px;
+            box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+            margin-top: -5px;
+        }
+
+        .imgUp {
+            margin-bottom: 15px;
+        }
+
+        .del {
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .imgAdd {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4bd7ef;
+            color: #fff;
+            box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 30px;
+            margin-top: 0px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    </style>
+    <title>Document</title>
+</div>
+
+<div>
+
+    <!--  Edit listing form  -->
+    <div class="container" style="margin-top:100px;">
+        <form method="post" class="ui form" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ context.form.non_field_errors }}
+            <span style="color: red">{{ context.error_message }}<br />{{ form.errors }}</span>
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="text-center ">
+                        <!-- <ul dont-close-dropdown class="dropdown-men"> -->
+                        <div class="field">
+                            <div class="fields">
+                                <div class="four wide field">
+                                    {{ context.form.photo.errors }}
+                                    <label for="{{ context.form.photo.id_for_label }}">Photo</label>
+                                    {{ context.form.photo }}
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.residence_type.errors }}
+                                    <label for="{{ context.form.residence_type.id_for_label }}">Residence
+                                        Type</label>
+                                    {{ context.form.residence_type }}
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.size.errors }}
+                                    <label for="{{ form.size.id_for_label }}">Square Footage </label>
+                                    {{ context.form.size }}
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.bed_count.errors }}
+                                    <label for="{{ context.form.bed_count.id_for_label }}">Number of Bedrooms</label>
+                                    {{ context.form.bed_count }}
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.bath_count.errors }}
+                                    <label for="{{ form.bath_count.id_for_label }}">Number of Bathrooms</label>
+                                    {{ context.form.bath_count }}
+                                </div>
+                            </div>
+                            <div class="fields">
+                                <div class="four wide field">
+                                    {{ context.form.district.errors }}
+                                    <label for="{{ form.price.id_for_label }}">District </label>
+                                    {{ context.form.district }}
+                                    <!--<input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.price.errors }}
+                                    <label for="{{ form.price.id_for_label }}">Price </label>
+                                    {{ context.form.price }}
+                                    <!--<input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.limit_tenant_count.errors }}
+                                    <label for="{{ form.limit_tenant_count.id_for_label }}">Max
+                                        Tenants</label>
+                                    {{ context.form.limit_tenant_count }}
+                                    <!-- <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.current_tenant_count.errors }}
+                                    <label for="{{ form.current_tenant_count.id_for_label }}">Current
+                                        Tenants </label>
+                                    {{ context.form.current_tenant_count }}
+                                    <!--<input type="text" placeholder="$" />-->
+                                </div>
+                            </div>
+                            <div class="dropdown-form-group">
+                                {{ context.form.pet_friendly.errors }}
+                                <label for="{{ form.pet_friendly.id_for_label }}">Pets Allowed</label>
+                                {{ context.form.pet_friendly }}
+                                <!--<input type="checkbox" />-->
+                            </div>
+                            <div class="dropdown-form-group">
+                                {{ context.form.utilities_included_rent.errors }}
+                                <label for="{{ form.utilities_included_rent.id_for_label }}">Utilities
+                                    Included </label>
+                                {{ context.form.utilities_included_rent }}
+                                <!--<input type="text" placeholder="$" />-->
+                            </div>
+                            <div class="dropdown-form-group">
+                                {{ context.form.amenities.errors }}
+                                <label for="{{ form.amenities.id_for_label }}">Amenities </label>
+                                {{ context.form.amenities }}
+                                <!--<input type="text" placeholder="$" />-->
+                            </div>
+
+                            <div class="fields">
+                                <div class="four wide field">
+                                    {{ context.form.address.errors }}
+                                    <label for="street">Street:</label>
+                                    {{ context.form.address }}
+                                    <!--                                    <input type="text" name="street" id="street" placeholder="South Court" />-->
+                                </div>
+                                <!--                                <div class="dropdown-form-group">-->
+                                <!--                                    <label for="neighborhood">Neighborhood:</label>-->
+                                <!--                                    <input type="text" name="neighborhood" id="neighborhood" placeholder="Old Palo Alto" />-->
+                                <!--                                </div>-->
+                                <div class="four wide field">
+                                    {{ context.form.city.errors }}
+                                    <label for="city">City</label>
+                                    {{ context.form.city }}
+                                    <!--                                    <input type="text" name="city" id="city" placeholder="Palo Alto" />-->
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.state.errors }}
+                                    <label for="state">State / Province</label>
+                                    {{ context.form.state }}
+                                    <!--                                    <input type="text" name="state" id="state" placeholder="California" />-->
+                                </div>
+                                <div class="four wide field">
+                                    {{ context.form.zip_code.errors }}
+                                    <label for="{{ context.form.zip_code.id_for_label }}">ZIP / Postal
+                                        Code</label>
+                                    {{ context.form.zip_code }}
+                                    <!--                                    <input type="text" name="zip" id="zip" placeholder="94301" />-->
+                                </div>
+                            </div>
+
+
+                            <div class="dropdown-form-group ">
+                                {{ context.form.description.errors }}
+                                <label for="{{ context.form.description.id_for_label }}">Listing
+                                    Description</label>
+                                {{ context.form.description }}
+                                <!--                                    <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>-->
+                            </div>
+
+                            <!-- </ul> -->
+                        </div>
+                        <div class="col-12 mx-auto mt-5">
+                            <input type="submit" value="Submit" class="btn btn-primary btn-lg col-5 mb-5 px-5">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+{% else %}
+<h1 style="text-align: center">
+    A landlord you are not I see..
+</h1>
+<h3 style="text-align: center">
+    Please sign in as a landlord!
+</h3>
+{% endif %}
+{% endblock %}

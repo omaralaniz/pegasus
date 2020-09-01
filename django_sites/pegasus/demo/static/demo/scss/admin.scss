@@ -1,0 +1,43 @@
+@import "card.scss";
+
+body{
+	height: 100%;
+	width: 100%;
+}
+
+#bodyid .parent-container{
+	border: 3px solid red;
+	height: 90%;
+	width:100%;
+}
+
+#bodyid .left-container{
+	border: 3px solid green;
+	height: 100%;
+}
+
+#bodyid .right-container{
+	border: 3px solid blue;
+	height: 100%;
+}
+
+#bodyid .parent-row{
+	border: 3px dotted pink;
+}
+.r-child-col{
+	border: 3px dotted black;
+}
+.r-child-row{
+	border: 3px dotted purple;
+}
+
+#bodyid .user-photo{
+	display: block;
+	width: 120px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+
+}
+

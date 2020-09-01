@@ -1,0 +1,1 @@
+Directory used for storing logs. Kept empty for VCS.

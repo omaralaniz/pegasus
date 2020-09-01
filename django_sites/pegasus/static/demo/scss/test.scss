@@ -1,0 +1,18 @@
+$backgroundcolor: black;
+$colors: (
+    background: black,
+    font: white,
+    borderPlum: plum,
+    borderPb: powderblue
+);
+
+.my-NavBar{
+    background-color: map-get($colors, font);
+    color: map-get($colors, background)
+}
+
+#bodyid .main-form{
+    width: 450px;
+    margin: auto;
+}
+

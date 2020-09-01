@@ -1,0 +1,20 @@
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div id="form_area" class="jumbotron ">
+    <h1 class="text-center mb-5">View Listing</h1>
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+
+    <div>
+        <p class="nav-link text-white">Posted by: {{context.listing.owner }}</p>
+        <p class="nav-link text-white">Price: {{ context.listing.price }}</p>
+        <p class="nav-link text-white">Address: {{context.address }}</p>
+        <p class="nav-link text-white"> {{context.listing.description }}</p>
+    </div>
+
+</div>
+{% endblock %}

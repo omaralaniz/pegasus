@@ -1,0 +1,361 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../static/demo/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        input[type='text'] {
+            background: none;
+            border: 0;
+            border-bottom: 1px solid #35bdff;
+            color: #fff;
+            margin: 0 auto;
+        }
+
+        input[type='text']:focus {
+            outline: none !important;
+            border: none;
+        }
+
+        .block-left {
+            width: 50%;
+            height: 100vh;
+            margin-top: -2.9rem;
+            float: left;
+        }
+
+        .block-right {
+            width: 50%;
+            height: 100vh;
+            margin-top: 0.2rem;
+            float: left;
+        }
+
+        #outerdiv {
+            position: relative;
+            padding-top: 50%;
+            width: 100%;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        #map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #333b7c;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding: 60px 0px 0 0px;
+
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .filter-search {
+            width: 100%;
+            height: 50px;
+            background-color: #333b7c;
+            margin-top: 75px;
+            display: flex;
+            align-self: center;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-hide {
+            display: none;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width:750px) {
+            .btn-hide {
+                display: flex;
+                flex-wrap: nowrap;
+            }
+
+            .media {
+                width: 93vw !important;
+            }
+
+            #map {
+                width: 100vw !important;
+            }
+
+            .filter-search {
+                margin-top: 60px !important;
+            }
+        }
+    </style>
+</div>
+
+<div>
+    <div>
+        <script>
+            // window.addEventListener('scroll', function () {
+            //     document.querySelector('.block-left').style.marginTop =
+            //         Math.max(-10) + 'px';
+            // }, false);
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+    </div>
+
+    <!-- Listing  -->
+
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="filter-search  position-fixed" style="position: absolute; left: 0%; top: 0;z-index:1; ">
+            <div class="form-cont">
+                {{ context.form.city }}
+                <button class="btn btn-sm btn-info">Go</button>
+                <span style="font-size:16px;cursor:pointer; color: #f1f1f1;" onclick="openNav()"><i
+                        class="fas fa-filter"></i>
+                    Filter</span>
+            </div>
+        </div>
+        <div id="mySidenav" class="sidenav" style="margin-top:100px;">
+            <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()">&times;</a>
+            <div class="ui form text-white" style="padding-right: 20px; padding-left:20px">
+                <h4 class="ui dividing header text-center text-white">Filter Your Search</h4>
+                <div class="field">
+                    <label for="{{ context.form.neighborhood.id_for_label }}" class="text-white">Neighborhood</label>
+                    {{ context.form.neighborhood }}
+                </div>
+                <div class="dropdown">
+                    <label for="{{ context.form.residence_type.id_for_label }}" class="text-white">Residence
+                        Type</label>
+                    {{ context.form.residence_type }}
+                </div>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <label for="{{ context.form.bed_count.id_for_label }}" class="text-white">Bedrooms</label>
+                            {{ context.form.bed_count }}
+                        </div>
+                        <div class="field">
+                            <label for="{{ context.form.bath_count.id_for_label }}" class="text-white">Bathroom</label>
+                            {{ context.form.bath_count }}
+                        </div>
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="form-check">
+                        <label for="{{ context.form.pet_friendly.id_for_label }}"
+                            class="form-check-label text-white">Pets
+                            allowed</label>
+                        {{ context.form.pet_friendly }}
+                    </div>
+                    <div class="form-check">
+                        <label for="{{ context.form.utilities_included_rent.id_for_label }}"
+                            class="form-check-label text-white">Utilities
+                            included</label>
+                        {{ context.form.utilities_included_rent }}
+                    </div>
+
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="{{ context.form.min_price.id_for_label }}" class="text-white">Min Price</label>
+                        {{ context.form.min_price }}
+                    </div>
+                    <div class="field">
+                        <label for="{{ context.form.max_price.id_for_label }}" class="text-white">Max Price</label>
+                        {{ context.form.max_price }}
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="{{ context.form.size.id_for_label }}" class="text-white">Square Footage</label>
+                        {{ context.form.size }}
+                    </div>
+                    <div class="field text-center">
+                        <input type="submit" value="Apply" class="btn btn-outline-light mx-auto mt-5"
+                            onclick="closeNav()" />
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+
+    <!-- Filter and search  forms-->
+    <!-- Listing results -->
+    <div class=" block-right" id="myUL" style="margin-top:140px">
+        <div class="container">
+            <div class="row">
+                {% if context.search_count %} {% for entry in context.search_results %}
+                <div class="col-12">
+                    <div class="media">
+                        <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+                        </div>
+                        <a href={% url 'view_listing' listing_id=entry.pk %}>
+                            <img class="d-flex align-self-start" {% if entry.photo %} src="http://{{ context.media_base }}/{{ entry.photo.url }}"
+                                {% endif %} alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body pl-3">
+                            <div class="price">${{ entry.price|floatformat:-2 }}
+                                <small class="float-right mr-2">{{ forloop.counter }}</small>
+                                <small>{{ entry.city|title }}</small>
+                                <small>{{ entry.district }}</small>
+                            </div>
+                            <div class="stats">
+                                <span><i class="fa fa-arrows-alt"></i>{{ entry.size }} sq ft</span>
+                                <span><i class="fa fa-bed"></i>{{ entry.bed_count }}
+                                    Bedroom{{ entry.bed_count|pluralize}}</span>
+                                <span><i class="fa fa-bath"></i>{{ entry.bath_count }}
+                                    Bathroom{{ entry.bath_count|pluralize}}</span>
+                            </div>
+                            <div class="address">{{ entry.address|title }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} {% else %}
+                <p class="col-12">No search results.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!--  Map  -->
+
+    <div class="block-left" style="margin-top:140px">
+        <div class="container position-fixed">
+            <div class="row">
+                <div class="col-6 ">
+                    <style>
+                        /* Always set the map height explicitly to define the size of the div
+								* element that contains the map. */
+
+
+                        #map {
+                            height: 140%;
+                            width: 46vw;
+                            margin-bottom: 20px;
+
+                        }
+
+                        /* Optional: Makes the sample page fill the window. */
+                    </style>
+                    <div id="outerdiv">
+                        <div id="map"></div>
+                    </div>
+                    <script>
+                        var map;
+                        function initMap() {
+                            console.log("Initializing map...");
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 10,
+                                center: { lat: 37.77493, lng: -122.41942 },
+                                mapTypeControl: true,
+                                mapTypeControlOptions: {
+                                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                                    position: google.maps.ControlPosition.TOP_CENTER
+                                },
+                                zoomControl: true,
+                                zoomControlOptions: {
+                                    position: google.maps.ControlPosition.LEFT_CENTER
+                                },
+                                scaleControl: true,
+                                streetViewControl: true,
+                                streetViewControlOptions: {
+                                    position: google.maps.ControlPosition.LEFT_TOP
+                                },
+                                fullscreenControl: true
+                            });
+
+                            var address_labels = []
+                            var listing_ids = []
+
+                            {% for item in context.search_results %}
+                            address_labels.push("{{ item }}");
+                            listing_ids.push("{{ item.residence_id }}");
+                            {% endfor %}
+
+                            {% for entry in context.lat_lng %}
+                            var marker_position = {
+                                "lat": parseFloat("{{ entry.lat }}"),
+                                "lng": parseFloat("{{ entry.lng }}"),
+                            }
+
+                            var marker = new google.maps.Marker({
+                                position: marker_position,
+                                map: map,
+                                label: "{{forloop.counter}}",
+                                title: address_labels["{{forloop.counter0}}"]
+                            });
+                            google.maps.event.addListener(marker, 'click', function () {
+                                window.location.replace('/web/' + listing_ids["{{forloop.counter0}}"]);
+                            });
+
+                            {% endfor %}
+                        }
+
+                    </script>
+
+                    <script
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
+                        async defer>
+                        </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

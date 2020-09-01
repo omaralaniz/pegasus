@@ -1,0 +1,19 @@
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div id="form_area" class="jumbotron ">
+    <h1 class="text-center mb-5">Roommate Compatibility Survey</h1>
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+
+    <form method="post" class="text-center text-white  text-size">
+        {% csrf_token %}
+        {{ context.form }}
+        <input type="button" value="Cancel" class="btn btn-primary btn-md">
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+</div>
+{% endblock %}

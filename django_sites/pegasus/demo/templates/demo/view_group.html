@@ -1,0 +1,21 @@
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div id="form_area" class="jumbotron ">
+    <h1 class="text-center mb-5">View Profile</h1>
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+
+    <div>
+        {% if context.group_found %}
+        <p class="nav-link text-white">Group Name: {{context.group.name }}</p>
+        <p class="nav-link text-white">Members: {{context.group.members }}</p>
+        <p class="nav-link text-white">Owners: {{context.group.owners }}</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

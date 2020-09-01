@@ -1,0 +1,45 @@
+<VirtualHost *:80>
+	ServerAdmin princeguy43@gmail.com
+	ServerName ec2-18-224-150-8.us-east-2.compute.amazonaws.com
+
+	RewriteEngine On
+	RewriteCond %{HTTPS} off
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
+
+<VirtualHost _default_ *:443>
+    ServerName ec2-18-224-150-8.us-east-2.compute.amazonaws.com
+    ServerAdmin princeguy43@gmail.com
+    Alias /static /opt/project_pegasus/django_sites/pegasus/static
+
+    SSLEngine On
+    SSLCertificateFile /etc/apache2/certificates/Certificate.crt
+    SSLCertificateKeyFile /etc/apache2/certificates/Key.key
+    #SSLCertificateChainFile /etc/httpd/certificates/chain.pem
+
+    WSGIDaemonProcess pegasusd python-path=/opt/project_pegasus/django_sites/pegasus/:/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages
+    WSGIProcessGroup pegasusd
+    WSGIScriptAlias /web /opt/project_pegasus/django_sites/pegasus/pegasus/wsgi.py
+
+    DocumentRoot /var/www/html
+    ErrorLog /opt/project_pegasus/django_sites/logs/error.log
+
+    <Directory /opt/project_pegasus/django_sites/pegasus/static>
+        Require all granted
+        Options FollowSymLinks
+        #AllowOverride None
+    </Directory>
+
+    <Directory /opt/project_pegasus/django_sites/pegasus/pegasus>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    <Directory /var/www/html>
+         Options Indexes FollowSymLinks MultiViews
+         AllowOverride all
+         Order allow,deny
+         Allow From all 
+    </Directory>
+</VirtualHost>

@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'about/site.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+        <h2>
+               Zachary Prince <br /> <span style="font-size: 20px">Backend Lead / Github Moderator</span>
+        </h2>
+
+        <div class="center">
+            <p>
+                <span style="font-size: 20px">About Me </span><br /><br />
+                <img src="{% static 'about/images/head.png' %}"><br /><br />
+            </p>
+            <p style="text-align: left">
+                I am a senior at SFSU, studying Computer Science. I currently work at Synopsys, Inc. where I have spent
+                the last two and a half years as a
+                software developer / system administrator within I.T. Before that, I had spent about two years working
+                technical customer support within Synopsys. I have grown up in the Bay Area. I was born in
+                Berkeley, grew up in Richmond and later Lafayette, moved to Santa Clara, and currently live in Daly
+                City. My hobbies include cars, video games, and anime.
+
+            </p>
+            <table align="center" id="link_table">
+                <tr>
+                        <td><a href="../" class="link_button">Back</a><br /></td>
+                </tr>
+        </table>
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form class="ui form" method="post">
+        {% csrf_token %}
+        <h4 class="ui dividing header text-center">User Information</h4>
+        <span style="color:red">
+          {% if context.error_message %}
+          <p> {{ context.error_message }} </p>
+          <br />
+          {% endif %}
+        </span>
+        {% for field in context.form.visible_fields %}
+        <div class="field">
+          <label>{{ field.label_tag }}</label>
+          <div class="two fields">
+            <div class="field"></div>
+          </div>
+          {{ field.errors }}
+          {{ field }}
+          {{ field.help_text }}
+        </div>
+        {% endfor %}
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-info"
+          tabindex="0"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

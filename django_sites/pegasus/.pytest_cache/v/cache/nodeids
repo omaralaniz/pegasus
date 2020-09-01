@@ -1,0 +1,7 @@
+[
+  "final/test_cases.py::test_tautology",
+  "final/test_cases.py::test_user_creation_page",
+  "final/test_cases.py::test_user_authentication",
+  "final/test_cases.py::test_user_promotion",
+  "final/test_cases.py::test_listing_response"
+]

@@ -1,0 +1,25 @@
+{% extends 'demo/navbar.html' %} {% block content %}
+<div id="form_area" class="jumbotron ">
+  <h1 class="text-center mb-5">Come Home With Pegasus</h1>
+  <form method="post" class="text-center text-white  text-size">
+    {% csrf_token %}
+    {{ context.form }}
+    <input type="submit" value="Submit" class="btn btn-primary btn-md" />
+  </form>
+</div>
+<div id="post_form" class="container">
+  <div class="row">
+    {% if context.search_count %} {% for entry in context.search_results %}
+    <p class="col-6 ">
+      <strong>{{ entry.address }}, {{ entry.city }} </strong><br /><img
+        src="{{ entry.photo.url }}"
+      />
+    </p>
+    <br />
+    {% endfor %} {% else %}
+    <p>No search results.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,238 @@
+============================= test session starts ==============================
+platform linux -- Python 3.6.7, pytest-4.4.1, py-1.8.0, pluggy-0.9.0
+Django settings: pegasus.settings (from ini file)
+rootdir: /opt/project_pegasus/django_sites/pegasus, inifile: pytest.ini
+plugins: django-3.4.8
+collected 3 items
+cache
+    Return a cache object that can persist state between testing sessions.
+    
+    cache.get(key, default)
+    cache.set(key, value)
+    
+    Keys must be a ``/`` separated value, where the first part is usually the
+    name of your plugin or application to avoid clashes with other cache users.
+    
+    Values can be any object handled by the json stdlib module.
+capsys
+    Enable text capturing of writes to ``sys.stdout`` and ``sys.stderr``.
+    
+    The captured output is made available via ``capsys.readouterr()`` method
+    calls, which return a ``(out, err)`` namedtuple.
+    ``out`` and ``err`` will be ``text`` objects.
+capsysbinary
+    Enable bytes capturing of writes to ``sys.stdout`` and ``sys.stderr``.
+    
+    The captured output is made available via ``capsysbinary.readouterr()``
+    method calls, which return a ``(out, err)`` namedtuple.
+    ``out`` and ``err`` will be ``bytes`` objects.
+capfd
+    Enable text capturing of writes to file descriptors ``1`` and ``2``.
+    
+    The captured output is made available via ``capfd.readouterr()`` method
+    calls, which return a ``(out, err)`` namedtuple.
+    ``out`` and ``err`` will be ``text`` objects.
+capfdbinary
+    Enable bytes capturing of writes to file descriptors ``1`` and ``2``.
+    
+    The captured output is made available via ``capfd.readouterr()`` method
+    calls, which return a ``(out, err)`` namedtuple.
+    ``out`` and ``err`` will be ``byte`` objects.
+doctest_namespace
+    Fixture that returns a :py:class:`dict` that will be injected into the namespace of doctests.
+pytestconfig
+    Session-scoped fixture that returns the :class:`_pytest.config.Config` object.
+    
+    Example::
+    
+        def test_foo(pytestconfig):
+            if pytestconfig.getoption("verbose") > 0:
+                ...
+record_property
+    Add an extra properties the calling test.
+    User properties become part of the test report and are available to the
+    configured reporters, like JUnit XML.
+    The fixture is callable with ``(name, value)``, with value being automatically
+    xml-encoded.
+    
+    Example::
+    
+        def test_function(record_property):
+            record_property("example_key", 1)
+record_xml_attribute
+    Add extra xml attributes to the tag for the calling test.
+    The fixture is callable with ``(name, value)``, with value being
+    automatically xml-encoded
+caplog
+    Access and control log capturing.
+    
+    Captured logs are available through the following properties/methods::
+    
+    * caplog.text            -> string containing formatted log output
+    * caplog.records         -> list of logging.LogRecord instances
+    * caplog.record_tuples   -> list of (logger_name, level, message) tuples
+    * caplog.clear()         -> clear captured records and formatted log output string
+monkeypatch
+    The returned ``monkeypatch`` fixture provides these
+    helper methods to modify objects, dictionaries or os.environ::
+    
+        monkeypatch.setattr(obj, name, value, raising=True)
+        monkeypatch.delattr(obj, name, raising=True)
+        monkeypatch.setitem(mapping, name, value)
+        monkeypatch.delitem(obj, name, raising=True)
+        monkeypatch.setenv(name, value, prepend=False)
+        monkeypatch.delenv(name, raising=True)
+        monkeypatch.syspath_prepend(path)
+        monkeypatch.chdir(path)
+    
+    All modifications will be undone after the requesting
+    test function or fixture has finished. The ``raising``
+    parameter determines if a KeyError or AttributeError
+    will be raised if the set/deletion operation has no target.
+recwarn
+    Return a :class:`WarningsRecorder` instance that records all warnings emitted by test functions.
+    
+    See http://docs.python.org/library/warnings.html for information
+    on warning categories.
+tmpdir_factory
+    Return a :class:`_pytest.tmpdir.TempdirFactory` instance for the test session.
+tmp_path_factory
+    Return a :class:`_pytest.tmpdir.TempPathFactory` instance for the test session.
+tmpdir
+    Return a temporary directory path object
+    which is unique to each test function invocation,
+    created as a sub directory of the base temporary
+    directory.  The returned object is a `py.path.local`_
+    path object.
+    
+    .. _`py.path.local`: https://py.readthedocs.io/en/latest/path.html
+tmp_path
+    Return a temporary directory path object
+    which is unique to each test function invocation,
+    created as a sub directory of the base temporary
+    directory.  The returned object is a :class:`pathlib.Path`
+    object.
+    
+    .. note::
+    
+        in python < 3.6 this is a pathlib2.Path
+
+----------------- fixtures defined from pytest_django.fixtures -----------------
+db
+    Require a django test database.
+    
+    This database will be setup with the default fixtures and will have
+    the transaction management disabled. At the end of the test the outer
+    transaction that wraps the test itself will be rolled back to undo any
+    changes to the database (in case the backend supports transactions).
+    This is more limited than the ``transactional_db`` resource but
+    faster.
+    
+    If multiple database fixtures are requested, they take precedence
+    over each other in the following order (the last one wins): ``db``,
+    ``transactional_db``, ``django_db_reset_sequences``.
+transactional_db
+    Require a django test database with transaction support.
+    
+    This will re-initialise the django database for each test and is
+    thus slower than the normal ``db`` fixture.
+    
+    If you want to use the database with transactions you must request
+    this resource.
+    
+    If multiple database fixtures are requested, they take precedence
+    over each other in the following order (the last one wins): ``db``,
+    ``transactional_db``, ``django_db_reset_sequences``.
+django_db_reset_sequences
+    Require a transactional test database with sequence reset support.
+    
+    This behaves like the ``transactional_db`` fixture, with the addition
+    of enforcing a reset of all auto increment sequences.  If the enquiring
+    test relies on such values (e.g. ids as primary keys), you should
+    request this resource to ensure they are consistent across tests.
+    
+    If multiple database fixtures are requested, they take precedence
+    over each other in the following order (the last one wins): ``db``,
+    ``transactional_db``, ``django_db_reset_sequences``.
+client
+    A Django test client instance.
+django_user_model
+    The class of Django's user model.
+django_username_field
+    The fieldname for the username used with Django's user model.
+admin_user
+    A Django admin user.
+    
+    This uses an existing user with username "admin", or creates a new one with
+    password "password".
+admin_client
+    A Django test client logged in as an admin user.
+rf
+    RequestFactory instance
+settings
+    A Django settings object which restores changes after the testrun
+live_server
+    Run a live Django server in the background during tests
+    
+    The address the server is started from is taken from the
+    --liveserver command line option or if this is not provided from
+    the DJANGO_LIVE_TEST_SERVER_ADDRESS environment variable.  If
+    neither is provided ``localhost:8081,8100-8200`` is used.  See the
+    Django documentation for its full syntax.
+    
+    NOTE: If the live server needs database access to handle a request
+          your test will have to request database access.  Furthermore
+          when the tests want to see data added by the live-server (or
+          the other way around) transactional database access will be
+          needed as data inside a transaction is not shared between
+          the live server and test code.
+    
+          Static assets will be automatically served when
+          ``django.contrib.staticfiles`` is available in INSTALLED_APPS.
+django_db_modify_db_settings_xdist_suffix
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:36: no docstring available
+django_assert_num_queries
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:441: no docstring available
+django_assert_max_num_queries
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:446: no docstring available
+django_db_modify_db_settings
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:64: no docstring available
+django_db_use_migrations
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:69: no docstring available
+django_db_keepdb
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:74: no docstring available
+django_db_createdb
+    venv/lib/python3.6/site-packages/pytest_django/fixtures.py:79: no docstring available
+django_db_setup
+    Top level fixture to ensure test databases are available
+
+------------------ fixtures defined from pytest_django.plugin ------------------
+django_test_environment
+    Ensure that Django is loaded and has its testing environment setup.
+    
+    XXX It is a little dodgy that this is an autouse fixture.  Perhaps
+        an email fixture should be requested in order to be able to
+        use the Django email machinery just like you need to request a
+        db fixture for access to the Django database, etc.  But
+        without duplicating a lot more of Django's test support code
+        we need to follow this model.
+django_db_blocker
+    Wrapper around Django's database access.
+    
+    This object can be used to re-enable database access.  This fixture is used
+    internally in pytest-django to build the other fixtures and can be used for
+    special database handling.
+    
+    The object is a context manager and provides the methods
+    .unblock()/.block() and .restore() to temporarily enable database access.
+    
+    This is an advanced feature that is meant to be used to implement database
+    fixtures.
+mailoutbox
+    venv/lib/python3.6/site-packages/pytest_django/plugin.py:541: no docstring available
+django_mail_patch_dns
+    venv/lib/python3.6/site-packages/pytest_django/plugin.py:551: no docstring available
+django_mail_dnsname
+    venv/lib/python3.6/site-packages/pytest_django/plugin.py:558: no docstring available
+
+========================= no tests ran in 0.73 seconds =========================

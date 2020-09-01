@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="wafi-style.css" /> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'about/wafi-style.css' %}" />
+    <title>About Me</title>
+  </head>
+  <body>
+    <div id="app">React is Not Render Yet!</div>
+    <script type="text/babel">
+      function AboutMe() {
+        return (
+          <div>
+            <HeaderFun />
+            <SectionTwo />
+          </div>
+        );
+      }
+
+      function HeaderFun() {
+        return (
+          <div className="container">
+            <h1 className="header-1">csc 648 spring 2019</h1>
+            <div className="header__text-box">
+              <h1 className="heading-primary">
+                <span className="heading-primary--main">
+                  Welcome to my page
+                </span>
+                <span className="heading-primary--sub">by wafi mohamed</span>
+              </h1>
+            </div>
+          </div>
+        );
+      }
+      function SectionTwo() {
+        return (
+          <div className="section-2 ">
+            <div className="u-center-text u-margin-bottom-big">
+              <h2 className="heading-secondary">About Me and my career</h2>
+            </div>
+            <div className="row">
+              <div className="col-1-of-2">
+                <h3 className="heading-3rd">Hello Everone!</h3>
+                <p className="pragraph">
+                  My name is Wafi Mohammed. I'm studying Computer Science at
+                  SFSU, and this is my last semester here. I love to design
+                  pages and I'm looking forward to start my career as a
+                  front-end and later be a full stack web developer. I love to
+                  watch sports, and I love to spend time with my family.
+                </p>
+              </div>
+              <div className="col-1-of-2">
+                <div className="composition ">
+                  <img
+                    src="{% static 'about/images/wafless' %}.jpg"
+                    alt="images"
+                    className="my-image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      ReactDOM.render(<AboutMe />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

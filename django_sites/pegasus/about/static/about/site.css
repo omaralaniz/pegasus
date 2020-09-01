@@ -1,0 +1,59 @@
+h2{
+	text-align: center;
+	font-family: "Bitstream Vera Sans Bold Oblique", "Book Antiqua", serif;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: white;
+	font-size: 30px;
+}
+
+body{
+	background-image: url("images/background.jpg")
+}
+
+p {
+	color: white;
+	font-size: 18px;
+	font-family: Ubuntu, "Trebuchet MS", Helvetica, sans-serif;
+	text-align:center;
+}
+
+#link_table{
+	text-align:center;
+}
+
+.link_button {
+	-moz-box-shadow:inset 0px 39px 37px -28px #6b0a6b;
+	-webkit-box-shadow:inset 0px 39px 37px -28px #6b0a6b;
+	box-shadow:inset 0px 39px 37px -28px #6b0a6b;
+	background-color:#801e94;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #a511c0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #9b14b3;
+	margin-right: 1px;
+}
+.link_button:hover {
+	background-color:#5a0f69;
+}
+.link_button:active {
+	position:relative;
+	top:1px;
+}
+
+footer{
+	display: none;
+}
+
+.center{
+      margin: auto;
+      width: 50%;
+}

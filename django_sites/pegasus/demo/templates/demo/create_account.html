@@ -1,0 +1,67 @@
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div>
+  <span style="color:white">
+    {% if context.form_submitted %} {% if context.creation_success %}
+    <p>USER CREATED</p>
+    {% else %}
+    <p>{{ context.error_message }}</p>
+    {% endif %} {% else %}
+    <p>{{ context.error_message }}</p>
+    {% endif %}
+  </span>
+</div>
+<!-- <form method="post" class="text-center text-white  text-size">
+  {% csrf_token %}
+  <table align="center">
+    {% for field in context.form.visible_fields %}
+    <tr>
+      <td>{{ field.label_tag }}</td>
+      <td>
+        {{ field.errors }}
+        {{ field }}
+        {{ field.help_text }}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <input type="submit" value="Submit" class="btn btn-primary btn-md" />
+</form> -->
+</div> 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <span style="color:white">
+        {% if context.form_submitted %} {% if context.creation_success %}
+        <p>USER CREATED</p>
+        {% else %}
+        <p>{{ context.error_message }}</p>
+        {% endif %} {% else %}
+        <p>{{ context.error_message }}</p>
+        {% endif %}
+      </span>
+      <form class="ui form" method="post">
+        {% csrf_token %}
+        <h4 class="ui dividing header text-center">User Information</h4>
+        {% for field in context.form.visible_fields %}
+        <div class="field">
+          <label>{{ field.label_tag }}</label>
+          <div class="two fields">
+            <div class="field"></div>
+          </div>
+          {{ field.errors }}
+          {{ field }}
+          {{ field.help_text }}
+        </div>
+        {% endfor %}
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-info"
+          tabindex="0"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="{% static 'about/images/favicon.ico' %}" />
+        {% block stylesheet %}
+        {% endblock %}
+
+        <!-- Load jQuery. -->
+        <script type="text/javascript" src="{% static 'about/jquery.js' %}"></script>
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    
+        <title>Team Pegasus</title>
+    </head>
+
+    <body>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

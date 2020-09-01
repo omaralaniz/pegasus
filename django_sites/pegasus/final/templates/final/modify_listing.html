@@ -1,0 +1,38 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<style>
+    .purple-background{
+        background-color: darkslategrey;
+    }
+</style>
+<div id="form_area" class="jumbotron ">
+    <h1 class="text-center mb-5">Edit Listing Photos</h1>
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+    <div class="purple-background">
+    <form method="post" class="text-center text-white  text-size" enctype='multipart/form-data'>
+        {% csrf_token %}
+
+        <table align="center">
+            {% for field in context.form.visible_fields %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>
+                    {{ field.errors }}
+                    {{ field }}
+                    {{ field.help_text }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <input type="button" value="Cancel" class="btn btn-primary btn-md">
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+    </div>
+</div>
+{% endblock %}

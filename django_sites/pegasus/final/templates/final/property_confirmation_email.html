@@ -1,0 +1,15 @@
+{% autoescape off %}
+Hi {{ user.username }},
+
+We have received your request to submit the following listing for approval:
+
+Address: {{ listing.address }}
+City:  {{ listing.city }}
+State: {{ listing.state }}
+Link: http://{{ domain }}{% url 'view_listing' listing_id=listing.residence_id %}
+
+It may take up to 48 hours for us to review this listing. If this listing is not approved by then, or if you do not hear back from us, please contact our Customer Support.
+
+Sincerely,
+The Pegasus Team
+{% endautoescape %}

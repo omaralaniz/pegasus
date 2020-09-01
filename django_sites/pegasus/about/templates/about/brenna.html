@@ -1,0 +1,53 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'about/site.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Added Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+        <h2>
+                Team Pegasus <br />
+        </h2>
+        <p>
+                Contributors:
+        </p>
+        <table align="center" id="link_table">
+                <tr>
+                        <td><a href="../brenna" class="link_button">Brenna Tirumalashetty</a><br /></td>
+                        <td><a href="../fatma" class="link_button">Fatma Khan</a><br /></td>
+                        <td><a href="../wafi" class="link_button">Wafi Mohamed</a><br /></td>
+                        <td><a href="../zachary" class="link_button">Zachary Prince</a><br /></td>
+                        <td><a href="../adan" class="link_button">Adan Guanlao</a><br /></td>
+                        <td><a href="../quan" class="link_button">Quan Lu</a><br /></td>
+                        <td><a href="../omar" class="link_button">Omar Alaniz</a><br /></td>
+                </tr>
+        </table>
+    <body>
+        <br></br>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <img class="img-responsive" src="{% static 'about/images/brenna.png' %}" style="width:90%">
+            </div>
+            <div class="col-sm-5" style="background-color:lavenderblush;">
+                <h2 style="margin-bottom: 0px; line-height: 0px">Brenna Tirumalashetty</h2>
+                <h3 style="text-align: center; margin-top: 10px;"><i>Team Lead</i></h3>
+                <p style="color:black; text-align:left; font-size: 150%; margin-top: 0px; margin-bottom: 0px;">
+                    I am a second semester masters student in computer science. I enjoyed a previous career as a bench researcher in stem cell science and food technology, and joined the SFSU computer science department in spring 2018. I think software engineering is great because 1) You can work on projects that solve real-world problems, 2) With a little tenacity, you can teach yourself anything, and 3) You don't need access to a lab to do it.
+                    <br></br>
+                    The undergraduate courses I've taken at SFSU are CSC 220 - 256 - 340 - 412 - 413 - 415 and MATH 324. As a graduate student, I've taken advanced algorithms and cloud computing, and am currently enrolled in advanced OS, data mining, and of course this class (848). I've been a mentor in Python for the PINC program since fall 2018, and am currently teaching CSC 210. I am interested in working on projects related to health and healthcare, the environment, food, and agriculture.     
+                    <br></br>
+                    I gave up my free time when I decided to return to school, but if I could have a hobby I would play the keyboard in a punk rock band.   
+                </p>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        </div>
+        <br></br>
+    </body>
+{% endblock %}

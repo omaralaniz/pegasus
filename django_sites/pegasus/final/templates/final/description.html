@@ -1,0 +1,182 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<style>
+  .carousel-item>img {
+    max-height: 300px;
+  }
+</style>
+<div class="d-md-flex h-md-100 " style="margin-top:50px">
+
+  <!-- First Half -->
+
+  <div class="col-md-6 p-0 bg-indigo h-md-100">
+    <div class="text-white d-md-flex  h-100 p-5 ">
+      <div class="logoarea pt-5 pb-5 w-100 ">
+
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="margin-top:-80px">
+          <div class="carousel-inner">
+            {% for image_url in context.listing_photos %}
+            <div class="carousel-item{% if forloop.first %} active {% endif %}">
+              <img class="d-block w-100" src="../{{ image_url }}" alt="First slide">
+            </div>
+            {% endfor %}
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <!--Start listing information-->
+        <div style="margin-top:0px;">
+
+          {% if context.domicile.is_active == False %} <span style="color: red; background-color: #0c0e1c;"><br />This
+            listing has not yet been
+            approved.<br /></span>
+          {% endif %}
+
+          <h4 class="text-primary mt-3 d-flex price"> ${{ context.domicile.price|floatformat:-2 }}
+            <span class="text-muted"> | {{ context.domicile.bed_count }}
+              bed{{ context.domicile.bed_count|pluralize }}</span>
+            <span class="text-muted"> | {{ context.domicile.bath_count }}
+              bath{{ context.domicile.bath_count|pluralize }}</span>
+            <span class="text-muted"> | {{ context.domicile.size }} sq ft
+              {{context.domicile.residence_type|title}}</span>
+          </h4>
+          <h4 class="text-dark">
+            <span> {{ context.domicile.address|title }}, {{ context.domicile.city|title }},
+              {{ context.domicile.state|upper }} {{ context.domicile.zip_code }}</span>
+          </h4>
+          <p class="text-secondary">
+            <a href="{% url 'view_profile' username=context.domicile.owner %}">Posted by {{ context.domicile.owner }}.</a>
+            {% if context.viewer_is_owner %}
+            <br />
+            <a href="{% url 'edit_listing_photo' listing_id=context.domicile.residence_id %}">(View and edit photos for this listing here.)</a>
+            {% endif %}
+          </p>
+          <p class="text-info"> Utilities included: {{ context.domicile.utilities_included_rent }} </p>
+          <p class="text-info"> Pet friendly: {{ context.domicile.pet_friendly }}</p>
+          <!--Display allowed pets if pet friendly-->
+          {% if context.domicile.pet_friendly %}
+          <p class="text-info"> Pets allowed: {{ context.domicile.pets_allowed }}</p>
+          {% endif %}
+
+          <p class="text-info"> Amenities: {{ context.domicile.amenities }}</p>
+          <p class="text-info"> {{ context.domicile.description }}</p>
+          <!--Display number of tenant openings available-->
+          {% if context.domicile.limit_tenant_count %}
+          {% with count=context.domicile.current_tenant_count|default_if_none:"0" %}
+          <p class="text-info">
+            <span> {{ count }} / {{ context.domicile.limit_tenant_count }} </span>
+            <span> current tenant{{ count|pluralize }} </span>
+          </p>
+          {% endwith %}
+          {% endif %}
+
+        </div>
+        <!--End listing information-->
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Half -->
+
+  <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+    <style>
+      #map {
+        height: 80%;
+        margin-bottom: 10x;
+      }
+
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 1%;
+        z-index: 5;
+        background-color: blueviolet;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto', 'sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #directionsPanel {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+    </style>
+    <div id="floating-panel">
+      <strong>Mode of Travel: </strong>
+      <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+      </select>
+    </div>
+    <div id="map"></div>
+    <div id="directionsPanel" style="overflow-y: scroll; height:200px; margin-bottom: 50px;"></div>
+    <script>
+      var map;
+      var marker_position;
+      var sfsuLatLong;
+
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        sfsuLatLong = new google.maps.LatLng(37.722952, -122.475994);
+
+        marker_position = {
+          "lat": parseFloat("{{ context.lat_long.lat }}"),
+          "lng": parseFloat("{{ context.lat_long.lng }}"),
+        }
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: marker_position,
+          zoom: 14
+        });
+
+        var marker = new google.maps.Marker({ position: marker_position, map: map });
+        document.getElementById('mode').addEventListener('change', function () {
+          calcAndRenderDirections(directionsService, directionsDisplay);
+        });
+
+      }
+
+      function calcAndRenderDirections(directionsService, directionsDisplay) {
+
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+        var selectedMode = document.getElementById('mode').value;
+
+        request = {
+          origin: marker_position,
+          destination: sfsuLatLong,
+          travelMode: google.maps.TravelMode[selectedMode]
+        };
+
+        directionsService.route(request, function (result, status) {
+          console.log("Status = ", status);
+          if (status == 'OK') {
+            directionsDisplay.setDirections(result);
+          }
+        });
+      }
+      $(window).on("resize", function () { $("#map").height($(window).height()); map.invalidateSize(); }).trigger("resize");
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
+      async defer></script>
+  </div>
+
+</div>
+<!-- Corosel images -->
+
+{% endblock %}

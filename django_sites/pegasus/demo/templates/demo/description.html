@@ -1,0 +1,549 @@
+{% extends 'demo/navbar.html' %}
+{% load static %}
+
+<!--<head>-->
+<!--  <meta charset="UTF-8" />-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--  <meta http-equiv="X-UA-Compatible" content="ie=edge" />-->
+<!--  <link rel="stylesheet" type="text/css"-->
+<!--    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />-->
+<!--  &lt;!&ndash; bootstrap css &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />-->
+<!--  &lt;!&ndash; fontawesome &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"-->
+<!--    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />-->
+<!--  <script src="js/index.js"></script>-->
+<!--  <link rel="stylesheet" href="../../static/demo/css/description.css">-->
+<!--  <link rel="stylesheet" href="../../static/demo/css/footer.css">-->
+<!--  <script src="../../static/demo/js/index.js"></script>-->
+
+
+<!--  <title>Document</title>-->
+<!--  <style>-->
+<!--    .modal-dialog {-->
+<!--      width: 360px;-->
+<!--      height: 300px;-->
+<!--    }-->
+<!--  </style>-->
+
+<!--  &lt;!&ndash; Nav Bar &ndash;&gt;-->
+<!--  <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">-->
+<!--    <a class="navbar-brand d-flex" href="#">-->
+<!--      <img class="rounded-circle" src="//unsplash.it/50/50" alt="" />-->
+<!--      <h4 class="mt-3 ml-3">Pegasus</h4>-->
+<!--    </a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"-->
+<!--      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="navbarResponsive">-->
+
+<!--      <ul class="navbar-nav ml-auto">-->
+<!--        <li class="nav-item active">-->
+<!--          <a class="ui inverted white button d-flex" href="index.html">-->
+<!--            <i class="home icon"></i>-->
+<!--            Home-->
+<!--          </a>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class=" ui inverted white button d-flex" href="#" data-toggle="modal" data-target="#exampleModal">-->
+<!--            <i class="add user icon"></i>-->
+<!--            Sign In</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--  </nav>-->
+<!--  &lt;!&ndash; end of nav bar &ndash;&gt;-->
+
+<!--  &lt;!&ndash; links &ndash;&gt;-->
+
+<!--  <ul class="nav nav-tabs sticky-top mt-0 p-2 bg-dark">-->
+<!--    <li class="nav-item ">-->
+<!--      <a class="nav-link text-info" href="#">-->
+<!--        <i class="fas fa-heart mr-2"></i>Save</a>-->
+<!--    </li>-->
+
+<!--    <li class="nav-item ">-->
+<!--      <a class="nav-link text-info" href="#" id="">-->
+<!--        <i class="fas fa-address-book mr-2"></i>Contact</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item ">-->
+<!--      <a class="nav-link text-info" href="#" data-toggle="modal" data-target="#calendar">-->
+<!--        <i class="fas fa-calendar-alt mr-2"></i>Calendar</a>-->
+<!--    </li>-->
+
+<!--  </ul>-->
+
+<!--  &lt;!&ndash; chat &ndash;&gt;-->
+<!--  <div class="modal fade" id="chats" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLabel">Live Chat</h5>-->
+<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <div class="container-fluid">-->
+<!--            <div class="row">-->
+<!--              <div class="col-12">-->
+<!--                <div class="panel panel-primary">-->
+<!--                  <div class="panel-heading">-->
+<!--                    <span class="glyphicon glyphicon-comment"></span> Chat-->
+<!--                    <div class="btn-group pull-right">-->
+<!--                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+<!--                        <span class="glyphicon glyphicon-chevron-down"></span>-->
+<!--                      </button>-->
+<!--                      <ul class="dropdown-menu slidedown">-->
+<!--                        <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span>Available</a></li>-->
+<!--                        <li><a href="#"><span class="glyphicon glyphicon-remove"></span>Busy</a></li>-->
+<!--                        <li><a href="#"><span class="glyphicon glyphicon-time"></span>Away</a></li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="panel-body">-->
+<!--                    <ul class="chat">-->
+<!--                      <li class="left clearfix">-->
+<!--                        <span class="chat-img pull-left">-->
+<!--                          <img src="//unsplash.it/50/50" style="width:100%; height:100%; border-radius:50%"-->
+<!--                            alt="User Avatar" class="img-circle" />-->
+<!--                        </span>-->
+<!--                        <div class="chat-body clearfix">-->
+<!--                          <div class="header">-->
+<!--                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">-->
+<!--                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>-->
+<!--                          </div>-->
+<!--                          <p>-->
+<!--                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor,-->
+<!--                            quis-->
+<!--                            ullamcorper ligula sodales.-->
+<!--                          </p>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="right clearfix"><span class="chat-img pull-right">-->
+<!--                          <img src="//unsplash.it/50/51" style="width:100%; height:100%; border-radius:50%"-->
+<!--                            alt="User Avatar" class="img-circle" />-->
+<!--                        </span>-->
+<!--                        <div class="chat-body clearfix">-->
+<!--                          <div class="header">-->
+<!--                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>-->
+<!--                            <strong class="pull-right primary-font">Bhaumik Patel</strong>-->
+<!--                          </div>-->
+<!--                          <p>-->
+<!--                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor,-->
+<!--                            quis-->
+<!--                            ullamcorper ligula sodales.-->
+<!--                          </p>-->
+<!--                        </div>-->
+<!--                      </li>-->
+
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="panel-footer">-->
+<!--                    <div class="input-group">-->
+<!--                      <input id="btn-input" type="text" class="form-control input-sm"-->
+<!--                        placeholder="Type your message here..." />-->
+<!--                      <span class="input-group-btn">-->
+<!--                        <button class="btn btn-warning btn-md" data-toggle="modal" data-target="#chat">-->
+<!--                          Send</button>-->
+<!--                      </span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; end chat &ndash;&gt;-->
+
+
+<!--  &lt;!&ndash; calender &ndash;&gt;-->
+<!--  <div class="modal" id="calendar">-->
+<!--    <div class="modal-dialog">-->
+<!--      <div class="modal-content">-->
+
+<!--        &lt;!&ndash; Modal Header &ndash;&gt;-->
+<!--        <div class="modal-header">-->
+<!--          <h4 class="modal-title">Open house</h4>-->
+<!--          <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Modal body &ndash;&gt;-->
+<!--        <div class="modal-body">-->
+<!--          <div class="calendar">-->
+<!--            <div class="header">-->
+<!--              <a data-action="prev-month" href="javascript:void(0)" title="Previous Month"><i></i></a>-->
+<!--              <div class="text" data-render="month-year"></div>-->
+<!--              <a data-action="next-month" href="javascript:void(0)" title="Next Month"><i></i></a>-->
+<!--            </div>-->
+<!--            <div class="months" data-flow="left">-->
+<!--              <div class="month month-a">-->
+<!--                <div class="render render-a"></div>-->
+<!--              </div>-->
+<!--              <div class="month month-b">-->
+<!--                <div class="render render-b"></div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Modal footer &ndash;&gt;-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; end of calender &ndash;&gt;-->
+
+
+{% block content %}
+<div class="d-md-flex h-md-100 ">
+
+  <!-- First Half -->
+
+  <div class="col-md-6 p-0 bg-indigo h-md-100">
+    <div class="text-white d-md-flex  h-100 p-5 ">
+      <div class="logoarea pt-5 pb-5">
+        <!-- <a href="#" data-toggle="modal" data-target="#myModal" data-local="#myCarousel">
+						<img class="d-flex align-self-start w-100 " style="margin-top:-80px"
+							src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+							alt="Generic placeholder image">
+							</a> -->
+        <div id="content-slider" style="margin-top:-50px;">
+          <div class="wrap-slider">
+
+            <!-- <h1 class="main-title">automatic slider css only</h1> -->
+
+            <!-- ===== Thumbnail ControlNav ======= -->
+            <input type="radio" id="a-1" name="a">
+            <input type="radio" id="a-2" name="a">
+            <input type="radio" id="a-3" name="a">
+            <input type="radio" id="a-4" name="a">
+
+            <nav id="main">
+              <label for="a-1" class="first"></label>
+              <label for="a-2" class="first"></label>
+              <label for="a-3" class="first"></label>
+              <label for="a-4" class="first"></label>
+            </nav>
+
+            <!-- =================================== -->
+            <nav id="control">
+              <label for="a-1"></label>
+              <label for="a-2"></label>
+              <label for="a-3"></label>
+              <label for="a-4"></label>
+            </nav>
+            <!-- =================================== -->
+
+            <!-- 	IMAGE NAVIGATION pic -->
+            <span id="b-1" class="th" tabindex="10">
+              <img src="../{{ entry.photo.url }}" alt="" id="p-1">
+              <div class="title-1">
+              </div>
+            </span>
+
+            <span id="b-2" class="th" tabindex="11">
+              <img src="../{{ entry.photo.url }}" alt="" id="p-2">
+              <div class="title-2">
+
+              </div>
+            </span>
+
+            <span id="b-3" class="th" tabindex="12">
+              <img src="../{{ entry.photo.url }}" alt="" id="p-3">
+              <div class="title-3">
+
+              </div>
+            </span>
+
+            <span id="b-4" class="th" tabindex="13">
+              <img src="../{{ entry.photo.url }}" alt="" id="p-4">
+              <div class="title-4">
+
+              </div>
+            </span>
+
+            <!-- ===== IMages ======= -->
+
+            <div class="slider">
+              <div class="inset">
+
+                <figure>
+                  <figcaption class="title-1">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-1" class="f">
+                </figure>
+
+                <figure>
+                  <figcaption class="title-2">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-2" class="f">
+                </figure>
+
+                <figure>
+                  <figcaption class="title-3">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-3" class="f">
+                </figure>
+
+                <figure>
+                  <figcaption class="title-4">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-4" class="f">
+                </figure>
+
+
+                <figure>
+                  <figcaption class="title-5">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-5" class="f">
+                </figure>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!--Start listing information-->
+        <div style="margin-top:100px;">
+          <h4 class="text-primary mt-3 d-flex price"> ${{ context.listing.price|floatformat:-2 }}
+            <span class="text-muted"> | {{ context.domicile.bed_count }}
+              bed{{ context.domicile.bed_count|pluralize }}</span>
+            <span class="text-muted"> | {{ context.domicile.bath_count }}
+              bath{{ context.domicile.bath_count|pluralize }}</span>
+            <span class="text-muted"> | {{ context.domicile.size }} sq ft
+              {{context.domicile.residence_type|title}}</span>
+          </h4>
+          <h4 class="text-dark">
+            <span> {{ context.domicile.address|title }}, {{ context.domicile.city|title }},
+              {{ context.domicile.state|upper }} {{ context.domicile.zip_code }}</span>
+          </h4>
+          <p class="text-secondary"> Posted by {{ context.listing.owner }} </p>
+          <p class="text-info"> Utilities included: {{ context.listing.utilities_included_rent }} </p>
+          <p class="text-info"> Pet friendly: {{ context.listing.pet_friendly }}</p>
+          <!--Display allowed pets if pet friendly-->
+          {% if context.listing.pet_friendly %}
+          <p class="text-info"> Pets allowed: {{ context.listing.pets_allowed }}</p>
+          {% endif %}
+
+          <p class="text-info"> Amenities: {{ context.listing.amenities }}</p>
+          <p class="text-info"> {{ context.listing.description }}</p>
+          <!--Display number of tenant openings available-->
+          {% if context.listing.limit_tenant_count %}
+          {% with count=context.listing.current_tenant_count|default_if_none:"0" %}
+          <p class="text-info">
+            <span> {{ count }} / {{ context.listing.limit_tenant_count }} </span>
+            <span> current tenant{{ count|pluralize }} </span>
+          </p>
+          {% endwith %}
+          {% endif %}
+        </div>
+        <!--End listing information-->
+        <!-- <div class="share-button mt-5">
+          <div class="share-button__back">
+            <a class="share__link" href="#" title="twitter">
+              <svg class="share__icon share__icon--twitter" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="49.652px" height="49.652px"
+                viewBox="0 0 49.652 49.652" style="enable-background:new 0 0 49.652 49.652;" xml:space="preserve">
+                <g>
+                  <g>
+                    <path
+                      d="M24.826,0C11.137,0,0,11.137,0,24.826c0,13.688,11.137,24.826,24.826,24.826c13.688,0,24.826-11.138,24.826-24.826    C49.652,11.137,38.516,0,24.826,0z M35.901,19.144c0.011,0.246,0.017,0.494,0.017,0.742c0,7.551-5.746,16.255-16.259,16.255    c-3.227,0-6.231-0.943-8.759-2.565c0.447,0.053,0.902,0.08,1.363,0.08c2.678,0,5.141-0.914,7.097-2.446    c-2.5-0.046-4.611-1.698-5.338-3.969c0.348,0.066,0.707,0.103,1.074,0.103c0.521,0,1.027-0.068,1.506-0.199    c-2.614-0.524-4.583-2.833-4.583-5.603c0-0.024,0-0.049,0.001-0.072c0.77,0.427,1.651,0.685,2.587,0.714    c-1.532-1.023-2.541-2.773-2.541-4.755c0-1.048,0.281-2.03,0.773-2.874c2.817,3.458,7.029,5.732,11.777,5.972    c-0.098-0.419-0.147-0.854-0.147-1.303c0-3.155,2.558-5.714,5.713-5.714c1.644,0,3.127,0.694,4.171,1.804    c1.303-0.256,2.523-0.73,3.63-1.387c-0.43,1.335-1.333,2.454-2.516,3.162c1.157-0.138,2.261-0.444,3.282-0.899    C37.987,17.334,37.018,18.341,35.901,19.144z">
+                    </path>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <a class="share__link " href="#" title="facebook">
+              <svg class="share__icon share__icon--facebook" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="49.652px" height="49.652px"
+                viewBox="0 0 49.652 49.652" style="enable-background:new 0 0 49.652 49.652;" xml:space="preserve">
+                <g>
+                  <g>
+                    <path
+                      d="M24.826,0C11.137,0,0,11.137,0,24.826c0,13.688,11.137,24.826,24.826,24.826c13.688,0,24.826-11.138,24.826-24.826    C49.652,11.137,38.516,0,24.826,0z M31,25.7h-4.039c0,6.453,0,14.396,0,14.396h-5.985c0,0,0-7.866,0-14.396h-2.845v-5.088h2.845    v-3.291c0-2.357,1.12-6.04,6.04-6.04l4.435,0.017v4.939c0,0-2.695,0-3.219,0c-0.524,0-1.269,0.262-1.269,1.386v2.99h4.56L31,25.7z    ">
+                    </path>
+                  </g>
+                </g>
+              </svg>
+
+            </a>
+            <a class="share__link" href="#" title="google plus">
+              <svg class="share__icon share__icon--google" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="49.652px" height="49.652px"
+                viewBox="0 0 49.652 49.652" style="enable-background:new 0 0 49.652 49.652;" xml:space="preserve">
+                <g>
+                  <g>
+                    <g>
+                      <path
+                        d="M21.5,28.94c-0.161-0.107-0.326-0.223-0.499-0.34c-0.503-0.154-1.037-0.234-1.584-0.241h-0.066     c-2.514,0-4.718,1.521-4.718,3.257c0,1.89,1.889,3.367,4.299,3.367c3.179,0,4.79-1.098,4.79-3.258     c0-0.204-0.024-0.416-0.075-0.629C23.432,30.258,22.663,29.735,21.5,28.94z">
+                      </path>
+                      <path
+                        d="M19.719,22.352c0.002,0,0.002,0,0.002,0c0.601,0,1.108-0.237,1.501-0.687c0.616-0.702,0.889-1.854,0.727-3.077     c-0.285-2.186-1.848-4.006-3.479-4.053l-0.065-0.002c-0.577,0-1.092,0.238-1.483,0.686c-0.607,0.693-0.864,1.791-0.705,3.012     c0.286,2.184,1.882,4.071,3.479,4.121H19.719L19.719,22.352z">
+                      </path>
+                      <path
+                        d="M24.826,0C11.137,0,0,11.137,0,24.826c0,13.688,11.137,24.826,24.826,24.826c13.688,0,24.826-11.138,24.826-24.826     C49.652,11.137,38.516,0,24.826,0z M21.964,36.915c-0.938,0.271-1.953,0.408-3.018,0.408c-1.186,0-2.326-0.136-3.389-0.405     c-2.057-0.519-3.577-1.503-4.287-2.771c-0.306-0.548-0.461-1.132-0.461-1.737c0-0.623,0.149-1.255,0.443-1.881     c1.127-2.402,4.098-4.018,7.389-4.018c0.033,0,0.064,0,0.094,0c-0.267-0.471-0.396-0.959-0.396-1.472     c0-0.255,0.034-0.515,0.102-0.78c-3.452-0.078-6.035-2.606-6.035-5.939c0-2.353,1.881-4.646,4.571-5.572     c0.805-0.278,1.626-0.42,2.433-0.42h7.382c0.251,0,0.474,0.163,0.552,0.402c0.078,0.238-0.008,0.5-0.211,0.647l-1.651,1.195     c-0.099,0.07-0.218,0.108-0.341,0.108H24.55c0.763,0.915,1.21,2.22,1.21,3.685c0,1.617-0.818,3.146-2.307,4.311     c-1.15,0.896-1.195,1.143-1.195,1.654c0.014,0.281,0.815,1.198,1.699,1.823c2.059,1.456,2.825,2.885,2.825,5.269     C26.781,33.913,24.89,36.065,21.964,36.915z M38.635,24.253c0,0.32-0.261,0.58-0.58,0.58H33.86v4.197     c0,0.32-0.261,0.58-0.578,0.58h-1.195c-0.322,0-0.582-0.26-0.582-0.58v-4.197h-4.192c-0.32,0-0.58-0.258-0.58-0.58V23.06     c0-0.32,0.26-0.582,0.58-0.582h4.192v-4.193c0-0.321,0.26-0.58,0.582-0.58h1.195c0.317,0,0.578,0.259,0.578,0.58v4.193h4.194     c0.319,0,0.58,0.26,0.58,0.58V24.253z">
+                      </path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <a class="share__link" href="#" title="dribbble">
+              <svg class="share__icon share__icon--dribbble" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96 96"
+                style="enable-background:new 0 0 96 96;" xml:space="preserve">
+                <g>
+                  <path
+                    d="M49.297,47.914c0.172-0.054,0.343-0.106,0.515-0.157c-0.414-0.928-0.873-1.886-1.395-2.915   c-9.4,2.776-18.399,2.812-20.008,2.784c-0.004,0.124-0.008,0.249-0.008,0.374c0,4.728,1.698,9.271,4.79,12.835   C34.223,59.173,39.68,51.025,49.297,47.914z M60.775,33.144c-3.554-3.059-8.081-4.741-12.775-4.741   c-1.419,0-2.846,0.156-4.248,0.466c1.024,1.381,4.161,5.736,7.106,11.112C57.267,37.526,60.166,33.97,60.775,33.144z    M36.118,63.567C39.567,66.206,43.672,67.6,48,67.6c2.584,0,5.096-0.496,7.469-1.475c-0.331-1.903-1.474-7.7-4.107-14.605   C40.754,55.269,36.754,62.325,36.118,63.567z M46.524,41.325c-3.039-5.36-6.203-9.775-7.071-10.962   c-5.337,2.592-9.262,7.533-10.567,13.298h0.081C30.999,43.661,38.213,43.491,46.524,41.325z M55.566,50.487   c2.324,6.457,3.396,11.832,3.703,13.548c4.257-2.998,7.172-7.602,8.045-12.712c-0.868-0.26-4.006-1.107-7.955-1.107   C58.063,50.216,56.789,50.307,55.566,50.487z M48,0C21.489,0,0,21.49,0,48c0,26.511,21.489,48,48,48s48-21.489,48-48   C96,21.49,74.511,0,48,0z M48,71.492c-12.954,0-23.492-10.538-23.492-23.492S35.046,24.508,48,24.508S71.492,35.046,71.492,48   S60.954,71.492,48,71.492z M52.611,43.378c0.433,0.893,0.839,1.783,1.209,2.651c0.121,0.283,0.24,0.568,0.356,0.852   c1.387-0.166,2.87-0.25,4.41-0.25c4.265,0,7.818,0.627,9.001,0.862c-0.11-4.251-1.612-8.381-4.253-11.694   C62.53,36.825,59.238,40.612,52.611,43.378z">
+                  </path>
+                </g>
+              </svg>
+            </a>
+          </div>
+          <div class="share-button__front">
+            <p class="share-button__text">Share</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Half -->
+
+  <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+
+    <!-- <iframe style="margin-top:-35px" class="google-map"
+					src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q={{ context.domicile.address }}%2C%20{{ context.domicile.city }}%2C%20{{ context.domicile.state }}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+					width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+				</iframe> -->
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+																* element that contains the map. */
+      #map {
+        height: 80%;
+        margin-bottom: 10x;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+    </style>
+    <div id="map"></div>
+    <script>
+      var map;
+      var marker_position;
+
+      function initMap() {
+
+        marker_position = {
+          "lat": parseFloat("{{ context.lat_long.lat }}"),
+          "lng": parseFloat("{{ context.lat_long.lng }}"),
+        }
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: marker_position,
+          zoom: 14
+        });
+
+        var marker = new google.maps.Marker({ position: marker_position, map: map });
+      }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
+      async defer></script>
+    <button class="btn btn-sm btn-info " style="position:absolute; bottom: 10%; left:50%" data-toggle="modal"
+      data-target="#chats">chat</button>
+  </div>
+
+  <div>
+    <strong>Mode of Travel: </strong>
+    <select id="mode" onchange="calcRoute();">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+  </div>
+
+
+</div>
+<!-- Corosel images -->
+
+<!-- <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming
+            programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code
+            wants to be simple. We will help programmers build up concepts in different programming languages that
+            include
+            C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Categories</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
+            <a href="#">Scanfcode</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+{% endblock %}

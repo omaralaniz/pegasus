@@ -1,0 +1,32 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'about/site.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+        <h2>
+               Omar Alaniz <br /> <span style="font-size: 20px">Scrum Master</span>
+        </h2>
+
+        <div class="center">
+            <p>
+                <span style="font-size: 20px">About Me</span><br /><br />
+                <!--<img src="{% static 'about/images/head.png' %}"><br /><br />-->
+            </p>
+            <p style="text-align: left">
+                I am a fifth year at SFSU, studying Computer Science. Currently don't work anywhere, lol. I am from Antioch
+                California, and I commute to school. I am pursuing a career in cyber security or in software engineering. 
+
+            </p>
+            <table align="center" id="link_table">
+                <tr>
+                        <td><a href="../" class="link_button">Back</a><br /></td>
+                </tr>
+        </table>
+        </div>
+
+
+{% endblock %}

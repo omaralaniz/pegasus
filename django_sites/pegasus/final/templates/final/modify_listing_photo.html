@@ -1,0 +1,57 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<style>
+    .spaced_table {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+    td{
+        color: black;
+    }
+</style>
+<div id="form_area" class="jumbotron ">
+    <h1 class="text-center mb-5">Edit Listing</h1>
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+    <div>
+    <form method="post" class="text-center text-white  text-size" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ context.formset.management_form }}
+        {% for form in context.formset %}
+            <table align="center" class="spaced_table">
+                <tr>
+                {% for field in form.visible_fields %}
+                    <td>{{ field.label_tag }}</td>
+                    <td>
+                        {{ field.errors }}
+                        {% if field.name == 'photo_url' %}
+                            {% if field.value %}
+                                Current Photo
+                                <br />
+                                <img class="d-flex align-self-start" src="../../media/{{ field.value }}" alt="Generic placeholder image">
+                                <br />
+                                <br />
+                                {{ field }}
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                        {{ field.help_text }}
+                    </td>
+                {% endfor %}
+                <tr />
+            </table>
+            <br />
+            <br />
+        {% endfor %}
+        <input type="button" value="Cancel" class="btn btn-primary btn-md">
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div>
+    <link rel="stylesheet" href="../../static/demo/css/profile.css" />
+</div>
+  <div id="user-profile-2" class="user-profile" style="margin-top:0px">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-18">
+        <li class="active">
+          <a data-toggle="tab" href="#tab1">
+            <i class="green ace-icon fa fa-user bigger-120"></i>
+            {% block tab1 %}
+            {%endblock%}
+          </a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#tab2">
+            <i class=" green ace-icon far fa-save bigger-120"></i>
+            {% block tab2 %}
+            {%endblock%}
+          </a>
+        </li>
+        <li>
+        {% if request.user.permission_level == 1%}
+        <li>
+          <a data-toggle="tab" href="#tab4">
+            <i class=" green ace-icon far fa-save bigger-120"></i>
+            {% block tab3%}
+            {%endblock%}
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <div class="tab-content no-border padding-24">
+
+        <div id="tab1" class="tab-pane in active">
+          {% block tab1_info %}
+          {% endblock %}
+        </div>
+
+      <div id="tab2" class="tab-pane">
+        {% block tab2_info %}
+        {% endblock %}
+      </div>
+      
+      <div id="tab3" class="tab-pane">
+        {% block tab3_info %}
+        {% endblock %}
+      </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

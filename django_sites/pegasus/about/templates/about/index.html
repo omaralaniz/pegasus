@@ -1,0 +1,27 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'about/site.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+        <h2>
+               <img src="{% static 'about/images/pegasus.png' %}" alt="Team Pegasus" style="width:818px;height:262px">
+        </h2>
+        <p>
+                Contributors:
+        </p>
+        <table align="center" id="link_table">
+                <tr>
+                        <td><a href="brenna" class="link_button">Brenna Tirumalashetty</a><br /></td>
+                        <td><a href="fatma" class="link_button">Fatma Khan</a><br /></td>
+                        <td><a href="wafi" class="link_button">Wafi Mohamed</a><br /></td>
+                        <td><a href="zachary" class="link_button">Zachary Prince</a><br /></td>
+                        <td><a href="adan" class="link_button">Adan Guanlao</a><br /></td>
+                        <td><a href="quan" class="link_button">Quan Lu</a><br /></td>
+                        <td><a href="omar" class="link_button">Omar Alaniz</a><br /></td>
+                </tr>
+        </table>
+{% endblock %}

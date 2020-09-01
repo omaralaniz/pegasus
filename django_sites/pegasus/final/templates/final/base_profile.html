@@ -1,0 +1,50 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<div>
+    <link rel="stylesheet" href="../../static/demo/css/profile.css" />
+    <!-- <script>
+        $(".mynavmenu li").on("click", function() {
+          $(".navmenu li").removeClass("active");
+          $(this).addClass("active");
+        });
+    
+    </script> -->
+</div>
+<div>
+  <div id="user-profile-2" class="user-profile" style="margin-top:0px">
+    <div class="tabbable">
+      <ul id="mynavmenu" class="nav nav-tabs padding-18">
+        <li class="mytab active" id="home">
+          <a data-toggle="tab" href="#tab1" id="hometab">
+            <i class="ace-icon fa fa-user bigger-120"></i>
+            {% block tab1 %}
+            {%endblock%}
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content no-border padding-24">
+
+        <div id="tab1" class="tab-pane in active">
+          {% block tab1_info %}
+          {% endblock %}
+        </div>
+
+      <div id="tab2" class="tab-pane">
+        {% block tab2_info %}
+        {% endblock %}
+      </div>
+      
+      <div id="tab3" class="tab-pane">
+        {% block tab3_info %}
+        {% endblock %}
+      </div>
+
+        </div>
+      </div>
+    </div>
+    <div>
+      <script src="../../static/final/js/profile.js"></script>
+    </div>
+</div>
+{% endblock %}

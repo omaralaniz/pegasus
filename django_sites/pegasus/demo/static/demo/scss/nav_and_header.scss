@@ -1,0 +1,91 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  // background-image: url("../images/home.jpg");
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+}
+.jumbotron {
+  background-color: transparent !important;
+}
+@import "varibles.scss";
+.navbar {
+  border-bottom: #008ed6 3px solid;
+  opacity: 1;
+  position: relative;
+}
+.jumbotron {
+  margin-top: 200px;
+}
+.navbar-toggler-icon {
+  outline: none;
+}
+*:focus {
+  outline: none !important;
+}
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #26468a;
+  border-right: none;
+  padding: 5px;
+  height: 50px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 50px;
+  border: 1px solid #26468a;
+  background: #26468a;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.secondary-title {
+  color: #f1f1f1;
+  font-size: 3rem;
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .wrap {
+    width: 100%;
+  }
+  .secondary-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .secondary-title {
+    font-size: 2rem;
+  }
+}

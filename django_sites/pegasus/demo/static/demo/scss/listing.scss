@@ -1,0 +1,117 @@
+.nav-tabs {
+  margin-top: -20px;
+}
+.filter {
+  padding: 1rem;
+  background: #000;
+  margin-top: 50px !important;
+}
+
+.media {
+  background: #fff;
+  position: relative;
+  margin-bottom: 15px;
+}
+.media img {
+  width: 200px;
+  margin: 0;
+  height: 200px;
+}
+.media-body {
+  border: 1px solid #bcbcbc;
+  border-left: 0;
+  height: 200px;
+}
+.media .price {
+  float: left;
+  width: 100%;
+  font-size: 30px;
+  font-weight: 600;
+  color: #4765ab;
+}
+.media .price small {
+  display: block;
+  font-size: 17px;
+  color: #232323;
+}
+.media .stats {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+}
+.media .stats span {
+  float: left;
+  margin-right: 10px;
+  font-size: 15px;
+}
+.media .stats span i {
+  margin-right: 7px;
+  color: #4765ab;
+}
+.media .address {
+  float: left;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 5px;
+  color: #888;
+}
+.media .fav-box {
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  top: 4px;
+  color: #e74c3c;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+}
+.nav-tabs {
+  margin-top: 100px;
+}
+@media (max-width: 750px) {
+  .block-left {
+    display: none;
+  }
+}
+
+// price slider
+
+#rangeBox {
+  /* carry complete  range box*/
+  width: 150px;
+  height: 50px;
+}
+#inputRange {
+  position: relative;
+  top: 50%;
+}
+#inputRange::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+#inputRange #min {
+  width: 40%;
+  float: left;
+}
+#inputRange #max {
+  width: 40%;
+  float: right;
+}
+
+@media (max-width: 545px) {
+  .block-left {
+    display: block;
+    width: 100%;
+  }
+  .block-right {
+    display: block;
+    width: 100%;
+  }
+  .block-left {
+    display: none;
+  }
+}

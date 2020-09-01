@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'about/site.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+        <h2>
+               Adan Guanlao <br /> <span style="font-size: 20px">Frontend-Backend Liason</span>
+        </h2>
+
+        <div class="center">
+            <p>
+                <span style="font-size: 20px">About Me </span><br /><br />
+                <img src="{% static 'about/images/adan.png' %}"><br /><br />
+            </p>
+            <p style="text-align: left">
+            	I am a senior studying Computer Science at SFSU. My preferred programming languages include C, C++, Java, 
+            	and Python. My areas of interest include Artificial Intelligence, Computer Architecture, 
+            	and Software Development. I am a Bay Area native, living in Daly City before moving to 
+            	and growing up in my current home in San Francisco. My hobbies include playing video games 
+            	and entertaining my three cats. 
+
+            </p>
+            <table align="center" id="link_table">
+                <tr>
+                        <td><a href="../" class="link_button">Back</a><br /></td>
+                </tr>
+        </table>
+        </div>
+
+
+{% endblock %}

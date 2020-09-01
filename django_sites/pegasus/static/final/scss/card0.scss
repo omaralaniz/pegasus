@@ -1,0 +1,136 @@
+.card {
+  $delay: 0.15s;
+  $duration: 0.4s;
+  $timing: cubic-bezier(0.51, 0.92, 0.24, 1);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 250px;
+  background: white;
+  color: currentColor;
+  text-decoration: none;
+  overflow: hidden;
+  transition-property: color;
+  transition-delay: $delay;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+
+  &.hover {
+    color: white;
+    transition-delay: 0;
+  }
+
+  &,
+  &__image,
+  &__image::after,
+  &__body,
+  &__foot,
+  &__border {
+    transition-duration: $duration;
+    transition-timing-function: $timing;
+  }
+
+  &__head {
+    position: relative;
+    padding-top: 70%;
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://thedisneyblog.com/wp-content/uploads/2011/07/photo1-lrg.jpg");
+    transform-origin: top center;
+    transition-property: transform;
+    transition-delay: $delay;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.5;
+      background: linear-gradient(
+        30deg,
+        rgba(#1a2a63, 0.85),
+        rgba(#1a2a63, 0.5)
+      );
+      transition-property: opacity;
+      transition-delay: $delay;
+    }
+  }
+
+  &.hover &__image {
+    transition-delay: 0;
+
+    &::after {
+      opacity: 1;
+      transition-delay: 0;
+    }
+  }
+
+  &__body {
+    position: relative;
+    padding: 2em;
+    transition-property: transform;
+    transition-delay: $delay;
+  }
+
+  &.hover &__body {
+    transition-delay: 0;
+  }
+
+  &__headline {
+    font-weight: 400;
+    margin: 0 0 0.8em;
+  }
+
+  &__text {
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &__foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 2em 2em;
+    opacity: 0;
+    transition-property: opacity;
+  }
+
+  &.hover &__foot {
+    opacity: 1;
+    transition-delay: $delay;
+  }
+
+  &__link {
+    color: currentColor;
+    text-decoration: none;
+    border-bottom: 2px solid #b5272d;
+  }
+
+  &__border {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    background: #b5272d;
+    transform: scaleY(0);
+    transition-property: transform;
+  }
+
+  &.hover &__border {
+    transform: none;
+    transition-delay: $delay;
+  }
+}
